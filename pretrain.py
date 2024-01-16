@@ -96,7 +96,7 @@ def train_epoch(epoch):
         if step % save_interval == 0:
             if ddp and torch.distributed.get_rank() == 0:
                 model.eval()
-                torch.save(model.module.state_dict(),'{}/iter_{}.pth'.format(save_dir,int(step+epoch*iter_per_epoch)))
+                torch.save(model.state_dict(),'{}/iter_{}.pth'.format(save_dir,int(step+epoch*iter_per_epoch)))
                 model.train()
             else:
                 model.eval()
